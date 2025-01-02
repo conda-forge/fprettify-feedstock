@@ -12,7 +12,7 @@ source:
     - find_package.patch
 
 build:
-  number: 0
+  number: 1
   script:
     - {{ PYTHON }} -m pip install . -vv
   noarch: python
@@ -21,13 +21,15 @@ build:
 
 requirements:
   host:
-    - python >=3.5
+    - python {{ python_min }}
     - pip
   run:
-    - python >=3.5
+    - python >={{ python_min }}
     - configargparse
 
 test:
+  requires:
+    - python {{ python_min }}
   source_files:
     - fortran_tests/
     - run_tests.py
